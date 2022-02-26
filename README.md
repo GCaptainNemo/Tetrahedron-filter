@@ -18,9 +18,9 @@
 
 比如图一 CuBS2 就是极不对称的四面体，其中Cu的4个近邻S原子的夹角可以达到95°-120°，而S近邻的两个B原子和Cu原子之间的键长可达0.32埃。把阈值调的过大容易引入很多非四面体。
 
-<p align="center"><img src="./resources/false_1.png" width=30%></p>
 
-<h6 align="center">图二、筛选错误例子(Ac3I)</h6>
+
+
 
 ### 2.2 基于成键数目判据
 
@@ -33,6 +33,12 @@ d(i, j) < (1 + poly_radii_tol_factor) * 离子半径之和
 ```
 
 poly_radii_tol_factor取0.5即如果两个原子之间的距离小于1.5乘离子半径之和则认为成键。但该方法仍存在问题，比如图一中B原子在poly_radii_tol_factor取0.5的情况下是没有成键的，而增大到0.55可以成键。
+
+基于成键数目的判断最主要的问题就是成键判据，以如下两种材料为例，阳离子配位数为6，但使用如上判据却只有四个原子成键，造成误判。
+
+<p align="center"><img src="./resources/false_1.png" width=30%><img src="./resources/false_2.png" width=30%></p>
+
+<h6 align="center">图二、筛选错误例子(左Ac3I，右U4)</h6>
 
 
 
@@ -47,13 +53,39 @@ poly_radii_tol_factor取0.5即如果两个原子之间的距离小于1.5乘离�
 
 
 
+### 2.4 基于化学环境的判断
+
+ChemEnv软件包是用来分析晶体化学配位环境，并识别最接近当前配位环境的模型配位环境。也就是说该包首先**具有很多标准模型**，当分析一个新的CIF文件时，原子的位置充满噪声，ChemEnv会通过某些策略找到最接近标准模型的配位环境。
+
+
+
 ## 三、运行结果
+
+### 3.1  方法2.1、2.2运行结果
+
+```
+python ./src/judge_tetrahedron.py
+```
+
+
 
 <p align="center"><img src="./resources/result.png" width=50%></p>
 
-<h6 align="center">图二、筛选结果</h6>
+
+
+<h6 align="center">图三、筛选结果</h6>
 
 从124657个Materials Project中分别按两种判据筛选，第一种筛出了1167个，第二种筛出了931个，两者交集共699个，并集共1399个。
+
+
+
+### 3.2  方法2.4运行结果
+
+```
+python ./src/judge_tetrahedron_new.py
+```
+
+
 
 
 
