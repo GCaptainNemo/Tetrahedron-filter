@@ -41,12 +41,23 @@ poly_radii_tol_factor取0.5即如果两个原子之间的距离小于1.5乘离�
 类似图一显示效果，具体画四面体算法流程[2]如下：
 
 1. 把晶体中所有元素按电负性进行排序，其中阴离子(anion)是电负性最大的，令anion_radius = anion.average_ionic_radius。
-
 2. 遍历所有原子，如果是阴离子则跳过(相当于剩下的是阳离子)。对原子取max_radius  = average_ionic_radius，然后令最大距离等于1.5 * (anion_radius + max_radius)。
 3. 接着对在最大距离内的原子进行判断，若原子为阴离子则成键。
 4. 画键(以阳离子为中心判断成键)、多面体(以阳离子为中心画多面体)。
 
-## 参考资料
+
+
+## 三、运行结果
+
+<p align="center"><img src="./resources/result.png" width=50%></p>
+
+<h6 align="center">图二、筛选结果</h6>
+
+从124657个Materials Project中分别按两种判据筛选，第一种筛出了1167个，第二种筛出了931个，两者交集共699个，并集共1399个。
+
+
+
+## 四、参考资料
 
 [1] [pymatgen-MultiStructuresVis-poly_radii_tol_factor](https://pymatgen.org/pymatgen.vis.structure_vtk.html)
 
