@@ -55,16 +55,18 @@ poly_radii_tol_factor取0.5即如果两个原子之间的距离小于1.5乘离�
 
 ### 2.4 基于化学环境的判断
 
-ChemEnv软件包[3]是用来分析晶体化学配位环境，并识别最接近当前配位环境的模型配位环境。也就是说该包首先**具有很多标准模型**，当分析一个新的CIF文件时，原子的位置充满噪声，ChemEnv会通过某些策略找到最接近标准模型的配位环境。
+ChemEnv软件包[3]是用来分析晶体化学配位环境，并识别最接近当前配位环境的模型配位环境。也就是说该包首先**具有很多标准模型**，当分析一个新的CIF文件时，原子的位置充满噪声，ChemEnv会通过某些策略找到最接近标准模型的配位环境。ChemEnv可以识别如下配位环境[5]，其中对若每个原子都满足`T:4`配位环境，就是我们要找的四面体。
 
-**备注**：由于该算法运行较慢，可以使用多线程进行加速。
+<p align="center"><img src="./resources/coordinate_env.png" width=50%></p>
+
+**备注**：由于该算法运行较慢，可以使用多进程充分利用CPU资源进行加速。
 
 ## 三、运行结果
 
 ### 3.1  方法2.1、2.2运行结果
 
 ```
-python ./src/judge_tetrahedron.py
+python ./src/judge_tetrahedron_self.py
 ```
 
 
@@ -82,7 +84,7 @@ python ./src/judge_tetrahedron.py
 ### 3.2  方法2.4运行结果
 
 ```
-python ./src/judge_tetrahedron_new.py
+python ./src/judge_tetrahedron_chemenv.py
 ```
 
 从3.1节的1399个中筛出了1203个四面体。
@@ -98,4 +100,6 @@ python ./src/judge_tetrahedron_new.py
 [3] Waroquiers D, George J, Horton M, Schenk S, Persson KA, Rignanese GM, Gonze X, Hautier G. ChemEnv: a fast and robust coordination environment identification tool. Acta Crystallogr B Struct Sci Cryst Eng Mater. 2020 Aug 1;76(Pt 4):683-695. doi: 10.1107/S2052520620007994. Epub 2020 Jul 21. PMID: 32831287; PMCID: PMC7412753.
 
 [4] [ChemEnv-Tutorial](http://matgenb.materialsvirtuallab.org/2018/01/01/ChemEnv-How-to-automatically-identify-coordination-environments-in-a-structure.html)
+
+[5] [Statistical Analysis of Coordination Environments in Oxides](https://pubs.acs.org/doi/10.1021/acs.chemmater.7b02766)
 
