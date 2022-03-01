@@ -87,7 +87,7 @@ python ./src/judge_tetrahedron_self.py
 python ./src/judge_tetrahedron_chemenv.py
 ```
 
-从3.1节的1399个中筛出了1203个四面体。
+从3.1节的1399个中筛出了1203个四面体。从整个数据集126335筛出1657个四面体。
 
 
 
