@@ -33,7 +33,8 @@ def start_filter_multi_process(input_dir, file_lst, output_dir, process_index):
     logger = get_logger(process_index)
     # #####################################################################################
     lgf = LocalGeometryFinder()
-    lgf.setup_parameters(centering_type='centroid', include_central_site_in_centroid=True)
+    # lgf.setup_parameters(centering_type='centroid', include_central_site_in_centroid=True)
+    lgf.setup_parameters(centering_type='standard', include_central_site_in_centroid=False)  # default
     def judge_tetrahedron_csm(unit_cell_cif_address):
         parser = CifParser(unit_cell_cif_address)
         struct = parser.get_structures()[0]
