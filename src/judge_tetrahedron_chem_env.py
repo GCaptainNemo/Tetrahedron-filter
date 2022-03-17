@@ -47,7 +47,7 @@ def start_filter_multi_process(input_dir, file_lst, output_dir, process_index):
                                                                      structure_environments=se)
         atom_num = len(struct)
         print(atom_num)
-        for isite in range(atom_num):
+        for isite in range(len(lse.coordination_environments)):
             type = lse.coordination_environments[isite][0]["ce_symbol"]
             print(type)
             if type != "T:4":
